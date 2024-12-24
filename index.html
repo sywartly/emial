@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客户搜索页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .search-container {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* 设置间距 */
+        }
+        .data-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px; /* 增加表格与搜索框之间的间距 */
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <label for="salesperson">业务员:</label>
+    <select id="salesperson">
+        <option value="">请选择</option>
+        <option value="河海怡">河海怡</option>
+        <!-- 可添加更多业务员选项 -->
+    </select>
+
+    <label for="category">分类:</label>
+    <select id="category" onchange="updateSubcategories()">
+        <option value="">请选择</option>
+        <option value="亚洲">亚洲</option>
+        <!-- 可添加更多分类选项 -->
+    </select>
+
+    <label for="subcategory">子分类:</label>
+    <select id="subcategory">
+        <option value="">请选择</option>
+        <option value="东亚">东亚</option>
+        <option value="南亚">南亚</option>
+    </select>
+
+    <label for="items">项目:</label>
+    <select id="items">
+        <option value="">请选择</option>
+        <option value="美纹纸">美纹纸</option>
+        <option value="不干胶">不干胶</option>
+        <option value="布基">布基</option>
+    </select>
+
+    <button id="searchButton">搜索</button>
+    <button id="resetButton" onclick="resetForm()">重置</button>
+</div>
+
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>客户</th>
+        <th>邮箱</th>
+        <th>内部字段1</th>
+        <th>内部字段2</th>
+        <th>...</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>[客户名1]</td>
+        <td>[邮箱1]</td>
+        <td>[数据1]</td>
+        <td>[数据2]</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>[客户名2]</td>
+        <td>[邮箱2]</td>
+        <td>[数据1]</td>
+        <td>[数据2]</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>[客户名3]</td>
+        <td>[邮箱3]</td>
+        <td>[数据1]</td>
+        <td>[数据2]</td>
+        <td></td>
+    </tr>
+    <!-- 更多行可以在这里添加 -->
+    </tbody>
+</table>
+
+<script>
+    function updateSubcategories() {
+        const category = document.getElementById('category').value;
+        const subcategory = document.getElementById('subcategory');
+        const items = document.getElementById('items');
+
+        if (category === '亚洲') {
+            subcategory.style.display = 'inline-block';
+            items.style.display = 'inline-block';
+        } else {
+            subcategory.style.display = 'none';
+            items.style.display = 'none';
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('salesperson').selectedIndex = 0;
+        document.getElementById('category').selectedIndex = 0;
+        document.getElementById('subcategory').selectedIndex = 0;
+        document.getElementById('items').selectedIndex = 0;
+
+        document.getElementById('subcategory').style.display = 'none';
+        document.getElementById('items').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
